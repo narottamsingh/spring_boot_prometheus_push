@@ -1,0 +1,17 @@
+spring:
+  application:
+      name: prometheus_push
+
+management:
+  metrics:
+    export:
+      pushgateway:
+        enabled: true                  # Enable Pushgateway export
+        base-url: localhost:9091 # Pushgateway container or service
+        job: my-short-lived-app        # Job name to group metrics
+        push-rate: 10s                 # Push metrics every 10 seconds (optional)
+
+  endpoints:
+    web:
+      exposure:
+        include: prometheus, metrics   # Enable Prometheus metrics (for debugging)
